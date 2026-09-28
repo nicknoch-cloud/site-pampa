@@ -1,4 +1,4 @@
-// PAMPA — comportamentos de interface
+// P.A.M.P.A. — comportamentos de interface
 
 document.addEventListener('DOMContentLoaded', function () {
   // Menu mobile
