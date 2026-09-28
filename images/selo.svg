@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 300">
+  <defs>
+    <path id="curvaTopo" d="M 40,150 A 110,110 0 0 1 260,150"/>
+    <path id="curvaBaixo" d="M 260,150 A 110,110 0 0 1 40,150"/>
+  </defs>
+  <circle cx="150" cy="150" r="146" fill="#FFFFFF"/>
+  <circle cx="150" cy="150" r="140" fill="none" stroke="#00AE47" stroke-width="7"/>
+  <text font-family="'Baloo 2', sans-serif" font-size="13.5" font-weight="700" fill="#00AE47" letter-spacing="2">
+    <textPath href="#curvaTopo" startOffset="50%" text-anchor="middle">PACIENTES ASSOCIADOS POR MEDICINA</textPath>
+  </text>
+  <text font-family="'Baloo 2', sans-serif" font-size="13.5" font-weight="700" fill="#00AE47" letter-spacing="2">
+    <textPath href="#curvaBaixo" startOffset="50%" text-anchor="middle">POLÍTICA E AUTOCULTIVO</textPath>
+  </text>
+  <g fill="#00AE47" transform="translate(150,150) scale(0.62)">
+    <path d="M0,-88 L18,-30 L0,0 L-18,-30 Z"/>
+    <path d="M76,-44 L28,-14 L0,0 L20,-38 Z"/>
+    <path d="M76,44 L28,14 L0,0 L38,20 Z"/>
+    <path d="M0,88 L-18,30 L0,0 L18,30 Z"/>
+    <path d="M-76,44 L-28,14 L0,0 L-20,38 Z"/>
+    <path d="M-76,-44 L-28,-14 L0,0 L-38,-20 Z"/>
+    <circle r="14"/>
+  </g>
+</svg>

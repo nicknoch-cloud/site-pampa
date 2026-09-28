@@ -1,0 +1,3 @@
+# Site estático da P.A.M.P.A. — sem etapa de build; publica a raiz do repositório.
+[build]
+  publish = "."
