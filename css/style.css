@@ -635,3 +635,6 @@ section ul { align-items: center; }
 /* Símbolo da P.A.M.P.A. antes dos títulos dos cartões (Quem Somos) */
 .titulo-com-simbolo { display: inline-flex; align-items: center; justify-content: center; gap: 0.4em; }
 .titulo-com-simbolo .simbolo-titulo { width: 1.15em; height: 1.15em; flex-shrink: 0; }
+
+/* Símbolo animado (Início, seção Quem somos) */
+.video-simbolo { display: block; width: 100%; max-width: 520px; height: auto; aspect-ratio: 1 / 1; border-radius: var(--raio); justify-self: center; align-self: center; background: #00A846; }
