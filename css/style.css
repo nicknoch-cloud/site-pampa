@@ -631,3 +631,7 @@ section ul { align-items: center; }
 
 /* Arte "Acolher, ensinar, lutar" ao lado da missão (Quem Somos) */
 .two-col img.img-missao { width: 100%; max-width: 520px; height: auto; aspect-ratio: 1 / 1; object-fit: cover; align-self: center; justify-self: center; }
+
+/* Símbolo da P.A.M.P.A. antes dos títulos dos cartões (Quem Somos) */
+.titulo-com-simbolo { display: inline-flex; align-items: center; justify-content: center; gap: 0.4em; }
+.titulo-com-simbolo .simbolo-titulo { width: 1.15em; height: 1.15em; flex-shrink: 0; }
