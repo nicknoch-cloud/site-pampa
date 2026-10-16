@@ -601,3 +601,30 @@ section { padding: 72px 0; }
     gap: 18px;
   }
 }
+
+/* ---------- Alinhamento centralizado de todos os textos (out/2026) ---------- */
+/* Cabeçalho/menu ficam como estão; o resto do conteúdo é centralizado. */
+section, .page-hero, .site-footer { text-align: center; }
+section p, section ul, section h1, section h2, section h3,
+.site-footer p { margin-left: auto; margin-right: auto; }
+section ul { align-items: center; }
+
+.section-head { margin-left: auto; margin-right: auto; }
+.hero-actions { justify-content: center; }
+.pillar-card { text-align: center; }
+.pillar-card .icone { margin-left: auto; margin-right: auto; }
+.step-num { margin-left: auto; margin-right: auto; }
+
+.contact-info-item { flex-direction: column; align-items: center; gap: 10px; }
+.social-row { justify-content: center; }
+.faq-question { text-align: center; }
+.faq-question > span:first-child { flex: 1; padding-left: 32px; } /* compensa o "+" para o texto ficar no centro real */
+
+.timeline { border-left: none; padding-left: 0; }
+.timeline-item::before { display: none; }
+
+.footer-logo { justify-content: center; }
+.footer-bottom { justify-content: center; }
+
+/* Campos de formulário: rótulos centralizados, digitação continua à esquerda */
+.form-row input, .form-row select, .form-row textarea { text-align: left; }
