@@ -638,3 +638,49 @@ section ul { align-items: center; }
 
 /* Símbolo animado (Início, seção Quem somos) */
 .video-simbolo { display: block; width: 100%; max-width: 520px; height: auto; aspect-ratio: 1 / 1; border-radius: var(--raio); justify-self: center; align-self: center; background: #00A846; }
+
+/* ---------- Associe-se (convite ao Kunk) ---------- */
+.kk-hero { background: var(--verde-mais-escuro); color: var(--branco); padding: 76px 0 72px; }
+.kk-hero-grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 48px; align-items: center; }
+.kk-hero h1 { color: var(--branco); margin-bottom: 18px; }
+.kk-eyebrow { background: rgba(255,255,255,0.12); color: #9BE7B6; }
+.kk-lead { color: rgba(255,255,255,0.86); font-size: 1.15rem; max-width: 46ch; margin: 0 auto 30px; }
+.kk-lead strong { color: var(--branco); }
+.kk-hero-video { width: 100%; max-width: 380px; height: auto; aspect-ratio: 1/1; border-radius: 28px; justify-self: center; box-shadow: 0 24px 60px rgba(0,0,0,0.25); background: #00A846; }
+.kk-btn { font-size: 1.08rem; padding: 18px 34px; gap: 10px; }
+.kk-btn span { transition: transform .2s ease; }
+.kk-btn:hover span { transform: translateX(4px); }
+.kk-btn-hero { background: var(--branco); color: var(--verde-mais-escuro); box-shadow: 0 10px 30px rgba(0,0,0,0.22); }
+.kk-btn-hero:hover { background: #E9FBEF; }
+.kk-nota { display: inline-flex; align-items: center; gap: 8px; margin-top: 18px; font-size: 0.9rem; color: rgba(255,255,255,0.72); }
+.kk-nota .kk-ico { width: 16px; height: 16px; color: #9BE7B6; }
+
+.kk-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.kk-card { background: var(--branco); border: 1px solid var(--borda); border-radius: var(--raio); padding: 32px 26px; transition: transform .2s ease, box-shadow .2s ease; }
+.kk-card:hover { transform: translateY(-4px); box-shadow: var(--sombra); }
+.kk-card .kk-ico { width: 46px; height: 46px; padding: 10px; border-radius: 14px; background: var(--verde-claro); color: var(--verde-pampa); margin: 0 auto 16px; display: block; }
+.kk-card h3 { margin-bottom: 10px; }
+.kk-card p { font-size: 0.96rem; margin: 0; }
+
+.kk-checklist { align-items: stretch; display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; max-width: 980px; margin: 0 auto; }
+.kk-checklist li { background: var(--verde-claro2); border-radius: var(--raio); padding: 22px 16px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.kk-checklist .kk-ico { width: 34px; height: 34px; color: var(--verde-pampa); }
+.kk-checklist span { color: var(--cinza-texto); font-size: 0.92rem; line-height: 1.45; }
+.kk-checklist strong { display: block; color: var(--preto); font-family: var(--fonte-titulo); font-size: 1.02rem; margin-bottom: 2px; }
+.kk-prescricao { margin-top: 26px; }
+.kk-prescricao a { color: var(--verde-pampa); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+.kk-aviso { max-width: 720px; margin: 22px auto 0; }
+
+.kk-convite { background: linear-gradient(135deg, var(--verde-pampa), var(--verde-escuro)); color: var(--branco); padding: 70px 0; }
+.kk-convite h2 { color: var(--branco); margin-bottom: 10px; }
+.kk-convite p { color: rgba(255,255,255,0.88); max-width: 50ch; margin: 0 auto 28px; }
+.kk-btn-claro { background: var(--branco); color: var(--verde-mais-escuro); }
+.kk-btn-claro:hover { background: #E9FBEF; }
+
+@media (max-width: 900px) {
+  .kk-hero-grid { grid-template-columns: 1fr; }
+  .kk-hero-video { order: -1; max-width: 220px; }
+  .kk-cards { grid-template-columns: 1fr; }
+  .kk-checklist { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) { .kk-btn { width: 100%; justify-content: center; } }
