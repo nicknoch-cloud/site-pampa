@@ -691,3 +691,16 @@ section ul { align-items: center; }
 .kk-sem-receita p { margin-bottom: 0; }
 .kk-sem-receita .kk-sem-receita-alt { margin-top: 10px; font-size: 0.92rem; }
 .kk-sem-receita a { color: var(--verde-pampa); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---------- Aviso de cookies ---------- */
+.cookie-aviso { position: fixed; left: 50%; bottom: 20px; transform: translateX(-50%); z-index: 1000; width: min(720px, calc(100% - 32px)); background: var(--branco); border: 1px solid var(--borda); border-radius: var(--raio); box-shadow: 0 16px 40px rgba(4,85,38,0.22); padding: 20px 22px; display: flex; gap: 18px; align-items: center; text-align: left; }
+.cookie-aviso p { font-size: 0.92rem; margin: 0; color: var(--cinza-texto); }
+.cookie-aviso strong { color: var(--verde-mais-escuro); }
+.cookie-acoes { display: flex; gap: 10px; flex-shrink: 0; }
+.cookie-acoes .btn { padding: 10px 20px; font-size: 0.92rem; }
+.cookie-link { background: none; border: none; color: inherit; font: inherit; text-decoration: underline; text-underline-offset: 3px; cursor: pointer; padding: 0; }
+.cookie-link:hover { color: var(--branco); }
+@media (max-width: 640px) {
+  .cookie-aviso { flex-direction: column; align-items: stretch; text-align: center; bottom: 12px; }
+  .cookie-acoes .btn { flex: 1; justify-content: center; }
+}
