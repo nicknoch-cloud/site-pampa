@@ -143,11 +143,15 @@ document.addEventListener('DOMContentLoaded', function () {
       var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
       marcar(f.email, !emailOk); if (!emailOk) problemas.push('um e-mail válido');
       marcar(f.motivo, !motivo); if (!motivo) problemas.push('o motivo do contato');
-      if (!f.consentimento.checked) problemas.push('a autorização de uso dos dados');
+      var consOk = f.consentimento.checked;
+      f.consentimento.closest('.pc-consentimento').classList.toggle('pc-invalido', !consOk);
+      if (!consOk) problemas.push('a autorização de uso dos dados');
 
       if (problemas.length) {
         erro.textContent = 'Falta preencher: ' + problemas.join(', ') + '.';
         erro.hidden = false;
+        var primeiro = form.querySelector('.pc-invalido input, .pc-invalido, input.pc-invalido, select.pc-invalido');
+        if (primeiro && primeiro.focus) primeiro.focus();
         return;
       }
       erro.hidden = true;

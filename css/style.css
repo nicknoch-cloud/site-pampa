@@ -733,3 +733,6 @@ section ul { align-items: center; }
   .pc-card { grid-template-columns: 1fr; padding: 26px 20px; gap: 20px; }
   .pc-linha { grid-template-columns: 1fr; }
 }
+.pc-obrig { color: #B3261E; font-weight: 700; }
+.pc-aviso-obrig { font-size: 0.85rem; color: var(--cinza-texto); margin: 0; text-align: left; }
+.pc-consentimento.pc-invalido span { color: #B3261E; }

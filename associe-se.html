@@ -78,23 +78,24 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <p>Só quatro informações. Ao enviar, abrimos o WhatsApp do acolhimento com a sua mensagem pronta para você dar sequência.</p>
       </div>
       <form class="pc-form" id="form-pre-cadastro" novalidate>
+        <p class="pc-aviso-obrig">Todos os campos são obrigatórios.</p>
         <div class="pc-campo">
-          <label for="pc-nome">Nome completo</label>
-          <input id="pc-nome" name="nome" type="text" autocomplete="name" required maxlength="120">
+          <label for="pc-nome">Nome completo <span class="pc-obrig" aria-hidden="true">*</span></label>
+          <input id="pc-nome" aria-required="true" name="nome" type="text" autocomplete="name" required maxlength="120">
         </div>
         <div class="pc-linha">
           <div class="pc-campo">
-            <label for="pc-telefone">Telefone / WhatsApp</label>
-            <input id="pc-telefone" name="telefone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(51) 99999-9999" required maxlength="20">
+            <label for="pc-telefone">Telefone / WhatsApp <span class="pc-obrig" aria-hidden="true">*</span></label>
+            <input id="pc-telefone" aria-required="true" name="telefone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(51) 99999-9999" required maxlength="20">
           </div>
           <div class="pc-campo">
-            <label for="pc-email">E-mail</label>
-            <input id="pc-email" name="email" type="email" autocomplete="email" required maxlength="120">
+            <label for="pc-email">E-mail <span class="pc-obrig" aria-hidden="true">*</span></label>
+            <input id="pc-email" aria-required="true" name="email" type="email" autocomplete="email" required maxlength="120">
           </div>
         </div>
         <div class="pc-campo">
-          <label for="pc-motivo">Motivo do contato</label>
-          <select id="pc-motivo" name="motivo" required>
+          <label for="pc-motivo">Motivo do contato <span class="pc-obrig" aria-hidden="true">*</span></label>
+          <select id="pc-motivo" name="motivo" required aria-required="true">
             <option value="" selected disabled>Selecione</option>
             <option>Quero me associar (já tenho prescrição)</option>
             <option>Quero me associar (ainda não tenho prescrição)</option>
@@ -108,8 +109,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
           <input id="pc-site" name="site" type="text" tabindex="-1" autocomplete="off">
         </div>
         <label class="pc-consentimento">
-          <input type="checkbox" name="consentimento" required>
-          <span>Autorizo a P.A.M.P.A. a usar esses dados para entrar em contato comigo e iniciar meu cadastro, conforme a LGPD.</span>
+          <input type="checkbox" name="consentimento" required aria-required="true">
+          <span>Autorizo a P.A.M.P.A. a usar esses dados para entrar em contato comigo e iniciar meu cadastro, conforme a LGPD.<span class="pc-obrig" aria-hidden="true"> *</span></span>
         </label>
         <p class="pc-erro" role="alert" hidden></p>
         <button type="submit" class="btn btn-whatsapp pc-enviar">Enviar e continuar no WhatsApp</button>
