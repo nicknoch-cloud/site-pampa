@@ -704,3 +704,7 @@ section ul { align-items: center; }
   .cookie-aviso { flex-direction: column; align-items: stretch; text-align: center; bottom: 12px; }
   .cookie-acoes .btn { flex: 1; justify-content: center; }
 }
+
+/* Associe-se: link discreto para quem já tem acesso ao Kunk */
+.kk-ja-associado { margin-top: 1rem; font-size: .95rem; opacity: .9; }
+.kk-ja-associado a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }

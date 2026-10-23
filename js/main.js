@@ -66,7 +66,9 @@ document.addEventListener('DOMContentLoaded', function () {
     var a = e.target.closest && e.target.closest('a');
     if (!a) return;
     var href = a.getAttribute('href') || '';
-    if (a.hasAttribute('data-kunk') || href.indexOf('cadastro.pampa.org.br') !== -1) {
+    if (a.hasAttribute('data-form-cadastro') || href.indexOf('docs.google.com/forms') !== -1) {
+      evento('Lead', { content_name: 'Formulário de pré-cadastro' });
+    } else if (a.hasAttribute('data-kunk') || href.indexOf('cadastro.pampa.org.br') !== -1) {
       evento('Lead', { content_name: 'Cadastro no Kunk' });
     } else if (href.indexOf('wa.me/') !== -1) {
       evento('Contact', { content_name: 'WhatsApp' });
