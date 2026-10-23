@@ -61,17 +61,41 @@ document.addEventListener('DOMContentLoaded', function () {
 
   function evento(nome, dados) { if (window.fbq) fbq('track', nome, dados || {}); }
 
-  // Conversões: cliques no cadastro do Kunk e no WhatsApp
+  // Envia o evento ao Google Tag Manager (o GA4 só grava se houver consentimento)
+  function eventoGTM(nome, a) {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: nome,
+      link_url: a.href,
+      link_text: (a.textContent || '').trim().slice(0, 100),
+      pagina: window.location.pathname
+    });
+  }
+
+  function consentimentoGoogle(valor) {
+    if (typeof window.gtag !== 'function') return;
+    window.gtag('consent', 'update', {
+      ad_storage: valor, analytics_storage: valor,
+      ad_user_data: valor, ad_personalization: valor
+    });
+  }
+
+  // Conversões: pré-cadastro, Kunk, WhatsApp e botões "Associe-se"
   document.addEventListener('click', function (e) {
     var a = e.target.closest && e.target.closest('a');
     if (!a) return;
     var href = a.getAttribute('href') || '';
     if (a.hasAttribute('data-form-cadastro') || href.indexOf('docs.google.com/forms') !== -1) {
       evento('Lead', { content_name: 'Formulário de pré-cadastro' });
+      eventoGTM('clique_pre_cadastro', a);
     } else if (a.hasAttribute('data-kunk') || href.indexOf('cadastro.pampa.org.br') !== -1) {
       evento('Lead', { content_name: 'Cadastro no Kunk' });
+      eventoGTM('clique_kunk', a);
     } else if (href.indexOf('wa.me/') !== -1) {
       evento('Contact', { content_name: 'WhatsApp' });
+      eventoGTM('clique_whatsapp', a);
+    } else if (href.indexOf('associe-se') !== -1) {
+      eventoGTM('clique_associe_se', a);
     }
   });
 
@@ -82,17 +106,17 @@ document.addEventListener('DOMContentLoaded', function () {
     box.setAttribute('role', 'dialog');
     box.setAttribute('aria-label', 'Aviso de cookies');
     box.innerHTML =
-      '<p><strong>A gente cuida dos seus dados.</strong> Usamos cookies para entender como o site é usado e melhorar nossa comunicação, inclusive com a Meta (Facebook e Instagram). Você escolhe: nada é ativado sem o seu aceite.</p>' +
+      '<p><strong>A gente cuida dos seus dados.</strong> Usamos cookies para entender como o site é usado e melhorar nossa comunicação, inclusive com o Google e a Meta (Facebook e Instagram). Você escolhe: nada é ativado sem o seu aceite.</p>' +
       '<div class="cookie-acoes">' +
         '<button type="button" class="btn btn-secondary cookie-recusar">Recusar</button>' +
         '<button type="button" class="btn btn-primary cookie-aceitar">Aceitar</button>' +
       '</div>';
     document.body.appendChild(box);
     box.querySelector('.cookie-aceitar').addEventListener('click', function () {
-      salvarEscolha('aceito'); box.remove(); carregarPixel();
+      salvarEscolha('aceito'); box.remove(); consentimentoGoogle('granted'); carregarPixel();
     });
     box.querySelector('.cookie-recusar').addEventListener('click', function () {
-      salvarEscolha('recusado'); box.remove();
+      salvarEscolha('recusado'); box.remove(); consentimentoGoogle('denied');
     });
   }
 
