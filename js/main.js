@@ -62,12 +62,25 @@ document.addEventListener('DOMContentLoaded', function () {
   function evento(nome, dados) { if (window.fbq) fbq('track', nome, dados || {}); }
 
   // Envia o evento ao Google Tag Manager (o GA4 só grava se houver consentimento)
+  // Descobre em que parte da página o link estava
+  function localDoClique(a) {
+    if (a.closest('.whatsapp-float')) return 'botao_flutuante';
+    if (a.closest('.site-header')) return 'menu';
+    if (a.closest('.site-footer')) return 'rodape';
+    if (a.closest('.hero')) return 'topo';
+    var secao = a.closest('section');
+    var titulo = secao && secao.querySelector('h2, h1, h3');
+    if (titulo) return (titulo.textContent || '').trim().replace(/\s+/g, ' ').slice(0, 80);
+    return 'conteudo';
+  }
+
   function eventoGTM(nome, a) {
     window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
       event: nome,
       link_url: a.href,
-      link_text: (a.textContent || '').trim().slice(0, 100),
+      link_text: ((a.textContent || '').trim() || a.getAttribute('aria-label') || '').replace(/\s+/g, ' ').slice(0, 100),
+      local_clique: localDoClique(a),
       pagina: window.location.pathname
     });
   }
