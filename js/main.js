@@ -112,6 +112,81 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
+  // ---------- Formulário de pré-cadastro (Associe-se) ----------
+  // Envia os dados para a planilha da associação (Google Apps Script) e abre o WhatsApp do acolhimento.
+  // Cole aqui a URL do app da web do Apps Script (termina em /exec). Vazio = só abre o WhatsApp.
+  var URL_PRE_CADASTRO = '';
+  var WHATSAPP_ACOLHIMENTO = '5551920012851';
+
+  function iniciarPreCadastro() {
+    var form = document.getElementById('form-pre-cadastro');
+    if (!form) return;
+    var erro = form.querySelector('.pc-erro');
+    var sucesso = form.querySelector('.pc-sucesso');
+    var botao = form.querySelector('.pc-enviar');
+
+    function marcar(campo, invalido) { campo.classList.toggle('pc-invalido', invalido); }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var f = form.elements;
+      var nome = f.nome.value.trim();
+      var telefone = f.telefone.value.trim();
+      var digitos = telefone.replace(/\D/g, '');
+      var email = f.email.value.trim();
+      var motivo = f.motivo.value;
+      var problemas = [];
+
+      marcar(f.nome, nome.length < 3); if (nome.length < 3) problemas.push('seu nome');
+      var telOk = digitos.length >= 10 && digitos.length <= 13;
+      marcar(f.telefone, !telOk); if (!telOk) problemas.push('um telefone com DDD');
+      var emailOk = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+      marcar(f.email, !emailOk); if (!emailOk) problemas.push('um e-mail válido');
+      marcar(f.motivo, !motivo); if (!motivo) problemas.push('o motivo do contato');
+      if (!f.consentimento.checked) problemas.push('a autorização de uso dos dados');
+
+      if (problemas.length) {
+        erro.textContent = 'Falta preencher: ' + problemas.join(', ') + '.';
+        erro.hidden = false;
+        return;
+      }
+      erro.hidden = true;
+
+      var texto = 'Olá! Acabei de fazer o pré-cadastro no site da P.A.M.P.A.\n\n' +
+        'Nome: ' + nome + '\nTelefone: ' + telefone + '\nE-mail: ' + email + '\nMotivo: ' + motivo;
+      var linkWa = 'https://wa.me/' + WHATSAPP_ACOLHIMENTO + '?text=' + encodeURIComponent(texto);
+
+      // Robôs preenchem o campo escondido: finge sucesso e não envia nada
+      if (f.site.value) { form.reset(); return; }
+
+      botao.disabled = true;
+      botao.textContent = 'Enviando...';
+
+      if (URL_PRE_CADASTRO) {
+        try {
+          fetch(URL_PRE_CADASTRO, {
+            method: 'POST', mode: 'no-cors', keepalive: true,
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+            body: JSON.stringify({ nome: nome, telefone: telefone, email: email, motivo: motivo, pagina: location.href })
+          }).catch(function () {});
+        } catch (err) {}
+      }
+
+      evento('Lead', { content_name: 'Pré-cadastro no site' });
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event: 'envio_pre_cadastro', motivo: motivo, pagina: location.pathname });
+
+      sucesso.querySelector('.pc-link-wa').href = linkWa;
+      sucesso.hidden = false;
+      botao.textContent = 'Abrindo o WhatsApp...';
+      setTimeout(function () {
+        window.location.href = linkWa;
+        botao.disabled = false;
+        botao.textContent = 'Enviar e continuar no WhatsApp';
+      }, 600);
+    });
+  }
+
   function mostrarAviso() {
     if (document.querySelector('.cookie-aviso')) return;
     var box = document.createElement('div');
@@ -134,6 +209,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   function iniciar() {
+    iniciarPreCadastro();
     // Link no rodapé para rever a escolha
     var rodape = document.querySelector('.footer-bottom');
     if (rodape && !rodape.querySelector('.cookie-link')) {

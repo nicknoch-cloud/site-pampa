@@ -62,10 +62,60 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <span class="eyebrow kk-eyebrow">Associe-se</span>
       <h1>Seu tratamento começa aqui — e a gente caminha junto.</h1>
       <p class="kk-lead">O primeiro passo é preencher o nosso <strong>formulário de pré-cadastro</strong>. Depois, a equipe de acolhimento entra em contato e faz o seu cadastro no <strong>Kunk</strong>, o sistema onde você vai acompanhar o seu tratamento com a associação.</p>
-      <a class="btn kk-btn kk-btn-hero" href="https://docs.google.com/forms/d/e/1FAIpQLSeLEQMSOpwvbpDormj8rPYpkWvKoNAK4mSiNsIwhmmBpZLiag/viewform" target="_blank" rel="noopener" data-form-cadastro>Preencher o formulário <span aria-hidden="true">→</span></a>
-      <p class="kk-nota"><svg class="kk-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Leva poucos minutos · acolhimento gratuito · seus dados protegidos</p>
+      <a class="btn kk-btn kk-btn-hero" href="#pre-cadastro">Preencher o formulário <span aria-hidden="true">→</span></a>
+      <p class="kk-nota"><svg class="kk-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Leva menos de 1 minuto · acolhimento gratuito · seus dados protegidos</p>
     </div>
     <img class="kk-hero-selo" src="images/selo-branco.png" alt="Selo P.A.M.P.A. — Pacientes Associados por Medicina, Política &amp; Autocultivo" width="760" height="760">
+  </div>
+</section>
+
+<section class="pc-secao" id="pre-cadastro">
+  <div class="container">
+    <div class="pc-card">
+      <div class="pc-intro">
+        <span class="eyebrow">Pré-cadastro</span>
+        <h2>Comece por aqui</h2>
+        <p>Só quatro informações. Ao enviar, abrimos o WhatsApp do acolhimento com a sua mensagem pronta para você dar sequência.</p>
+      </div>
+      <form class="pc-form" id="form-pre-cadastro" novalidate>
+        <div class="pc-campo">
+          <label for="pc-nome">Nome completo</label>
+          <input id="pc-nome" name="nome" type="text" autocomplete="name" required maxlength="120">
+        </div>
+        <div class="pc-linha">
+          <div class="pc-campo">
+            <label for="pc-telefone">Telefone / WhatsApp</label>
+            <input id="pc-telefone" name="telefone" type="tel" autocomplete="tel" inputmode="tel" placeholder="(51) 99999-9999" required maxlength="20">
+          </div>
+          <div class="pc-campo">
+            <label for="pc-email">E-mail</label>
+            <input id="pc-email" name="email" type="email" autocomplete="email" required maxlength="120">
+          </div>
+        </div>
+        <div class="pc-campo">
+          <label for="pc-motivo">Motivo do contato</label>
+          <select id="pc-motivo" name="motivo" required>
+            <option value="" selected disabled>Selecione</option>
+            <option>Quero me associar (já tenho prescrição)</option>
+            <option>Quero me associar (ainda não tenho prescrição)</option>
+            <option>Já sou associado(a) e preciso de ajuda</option>
+            <option>Dúvidas sobre cannabis medicinal</option>
+            <option>Outro assunto</option>
+          </select>
+        </div>
+        <div class="pc-armadilha" aria-hidden="true">
+          <label for="pc-site">Não preencha</label>
+          <input id="pc-site" name="site" type="text" tabindex="-1" autocomplete="off">
+        </div>
+        <label class="pc-consentimento">
+          <input type="checkbox" name="consentimento" required>
+          <span>Autorizo a P.A.M.P.A. a usar esses dados para entrar em contato comigo e iniciar meu cadastro, conforme a LGPD.</span>
+        </label>
+        <p class="pc-erro" role="alert" hidden></p>
+        <button type="submit" class="btn btn-whatsapp pc-enviar">Enviar e continuar no WhatsApp</button>
+        <p class="pc-sucesso" hidden>Pronto, recebemos seus dados! Se o WhatsApp não abriu, <a href="#" class="pc-link-wa" target="_blank" rel="noopener">clique aqui para falar com o acolhimento</a>.</p>
+      </form>
+    </div>
   </div>
 </section>
 
@@ -106,7 +156,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <div class="step-card">
         <div class="step-num">1</div>
         <h3>Preencha o formulário</h3>
-        <p>Responda ao <a href="https://docs.google.com/forms/d/e/1FAIpQLSeLEQMSOpwvbpDormj8rPYpkWvKoNAK4mSiNsIwhmmBpZLiag/viewform" target="_blank" rel="noopener" data-form-cadastro>formulário de pré-cadastro</a> com seus dados, o motivo do tratamento e os documentos que tiver em mãos.</p>
+        <p>Preencha o <a href="#pre-cadastro">formulário rápido</a> aqui na página: nome, telefone, e-mail e o motivo do contato. Em seguida, você continua a conversa com o acolhimento pelo WhatsApp.</p>
       </div>
       <div class="step-card">
         <div class="step-num">2</div>
@@ -149,7 +199,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="container">
     <h2>Pronto para fazer parte?</h2>
     <p>O formulário é o primeiro passo de um tratamento acompanhado, seguro e coletivo. O resto, a gente faz junto com você.</p>
-    <a class="btn kk-btn kk-btn-claro" href="https://docs.google.com/forms/d/e/1FAIpQLSeLEQMSOpwvbpDormj8rPYpkWvKoNAK4mSiNsIwhmmBpZLiag/viewform" target="_blank" rel="noopener" data-form-cadastro>Preencher o formulário <span aria-hidden="true">→</span></a>
+    <a class="btn kk-btn kk-btn-claro" href="#pre-cadastro">Preencher o formulário <span aria-hidden="true">→</span></a>
     <p class="kk-ja-associado">Já recebeu seu acesso? <a href="https://cadastro.pampa.org.br/" target="_blank" rel="noopener" data-kunk>Entrar no Kunk</a></p>
   </div>
 </section>

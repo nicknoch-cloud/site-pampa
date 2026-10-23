@@ -708,3 +708,28 @@ section ul { align-items: center; }
 /* Associe-se: link discreto para quem já tem acesso ao Kunk */
 .kk-ja-associado { margin-top: 1rem; font-size: .95rem; opacity: .9; }
 .kk-ja-associado a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---------- Pré-cadastro (Associe-se) ---------- */
+.pc-secao { padding-top: 64px; padding-bottom: 24px; scroll-margin-top: 80px; }
+.pc-card { max-width: 860px; margin: 0 auto; display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 36px; background: var(--branco); border: 1px solid var(--borda); border-radius: var(--raio); box-shadow: var(--sombra); padding: 36px; }
+.pc-intro h2 { margin-bottom: 10px; }
+.pc-intro p { font-size: 0.98rem; margin: 0; }
+.pc-form { display: flex; flex-direction: column; gap: 16px; }
+.pc-linha { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.pc-campo { display: flex; flex-direction: column; gap: 6px; text-align: left; }
+.pc-campo label { font-weight: 600; font-size: 0.92rem; color: var(--preto); }
+.pc-campo input, .pc-campo select { font: inherit; font-size: 1rem; padding: 13px 14px; border: 1.5px solid var(--borda); border-radius: 12px; background: var(--branco); color: var(--preto); width: 100%; }
+.pc-campo input:focus, .pc-campo select:focus { outline: none; border-color: var(--verde-pampa); box-shadow: 0 0 0 3px rgba(0,174,71,0.18); }
+.pc-campo .pc-invalido { border-color: #D93025; }
+.pc-consentimento { display: flex; gap: 10px; align-items: flex-start; font-size: 0.88rem; color: var(--cinza-texto); text-align: left; line-height: 1.45; cursor: pointer; }
+.pc-consentimento input { margin-top: 3px; width: 18px; height: 18px; accent-color: var(--verde-pampa); flex: none; }
+.pc-armadilha { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.pc-enviar { width: 100%; justify-content: center; font-size: 1.05rem; padding: 16px 24px; }
+.pc-enviar[disabled] { opacity: .7; cursor: wait; }
+.pc-erro { color: #B3261E; font-size: 0.92rem; margin: 0; text-align: left; }
+.pc-sucesso { background: var(--verde-claro2); border-radius: 12px; padding: 14px 16px; font-size: 0.95rem; margin: 0; text-align: left; }
+.pc-sucesso a { color: var(--verde-pampa); font-weight: 600; text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 760px) {
+  .pc-card { grid-template-columns: 1fr; padding: 26px 20px; gap: 20px; }
+  .pc-linha { grid-template-columns: 1fr; }
+}
