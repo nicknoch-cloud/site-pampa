@@ -115,7 +115,7 @@ document.addEventListener('DOMContentLoaded', function () {
   // ---------- Formulário de pré-cadastro (Associe-se) ----------
   // Envia os dados para a planilha da associação (Google Apps Script) e abre o WhatsApp do acolhimento.
   // Cole aqui a URL do app da web do Apps Script (termina em /exec). Vazio = só abre o WhatsApp.
-  var URL_PRE_CADASTRO = '';
+  var URL_PRE_CADASTRO = 'https://script.google.com/macros/s/AKfycbypKFuj1gkEOCt_8BXSAS8_PSIHq_PlCjF1jmDLKwQJOmxAEhaghCoI3vE0kYW4eAOJ/exec';
   var WHATSAPP_ACOLHIMENTO = '5551920012851';
 
   function iniciarPreCadastro() {
