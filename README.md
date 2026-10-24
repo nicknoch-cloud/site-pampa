@@ -16,3 +16,7 @@ Cada alteração enviada à `main` é publicada automaticamente.
 - `index.html`, `quem-somos.html`, `associe-se.html`, `orientacoes.html`, `contato.html` — páginas
 - `css/style.css` — estilos · `js/main.js` — menu e comportamentos
 - `images/` — logos e símbolos · `fonts/` — fontes da identidade visual
+
+## Depois de editar CSS ou JS
+
+O Cloudflare guarda `css/style.css` e `js/main.js` por até 4 horas. Depois de alterar qualquer um deles, rode `python3 tools/versionar.py` antes do commit: ele atualiza o `?v=` nas páginas e força todo mundo a baixar a versão nova.

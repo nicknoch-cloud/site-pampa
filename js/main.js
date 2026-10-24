@@ -166,28 +166,31 @@ document.addEventListener('DOMContentLoaded', function () {
       botao.disabled = true;
       botao.textContent = 'Enviando...';
 
-      if (URL_PRE_CADASTRO) {
-        try {
-          fetch(URL_PRE_CADASTRO, {
-            method: 'POST', mode: 'no-cors', keepalive: true,
-            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-            body: JSON.stringify({ nome: nome, telefone: telefone, email: email, motivo: motivo, pagina: location.href })
-          }).catch(function () {});
-        } catch (err) {}
+      // Grava na planilha ANTES de abrir o WhatsApp (espera até 3 s; se demorar, segue mesmo assim)
+      var gravacao = Promise.resolve();
+      if (URL_PRE_CADASTRO && window.fetch) {
+        gravacao = fetch(URL_PRE_CADASTRO, {
+          method: 'POST', mode: 'no-cors', keepalive: true,
+          headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+          body: JSON.stringify({ nome: nome, telefone: telefone, email: email, motivo: motivo, pagina: location.href })
+        }).catch(function () {});
       }
+      var limite = new Promise(function (ok) { setTimeout(ok, 3000); });
 
       evento('Lead', { content_name: 'Pré-cadastro no site' });
       window.dataLayer = window.dataLayer || [];
       window.dataLayer.push({ event: 'envio_pre_cadastro', motivo: motivo, pagina: location.pathname });
 
       sucesso.querySelector('.pc-link-wa').href = linkWa;
-      sucesso.hidden = false;
-      botao.textContent = 'Abrindo o WhatsApp...';
-      setTimeout(function () {
+      Promise.race([gravacao, limite]).then(function () {
+        sucesso.hidden = false;
+        botao.textContent = 'Abrindo o WhatsApp...';
         window.location.href = linkWa;
-        botao.disabled = false;
-        botao.textContent = 'Enviar e continuar no WhatsApp';
-      }, 600);
+        setTimeout(function () {
+          botao.disabled = false;
+          botao.textContent = 'Enviar e continuar no WhatsApp';
+        }, 1500);
+      });
     });
   }
 
