@@ -116,6 +116,8 @@ document.addEventListener('DOMContentLoaded', function () {
   // Envia os dados para a planilha da associação (Google Apps Script) e abre o WhatsApp do acolhimento.
   // Cole aqui a URL do app da web do Apps Script (termina em /exec). Vazio = só abre o WhatsApp.
   var URL_PRE_CADASTRO = 'https://script.google.com/macros/s/AKfycbypKFuj1gkEOCt_8BXSAS8_PSIHq_PlCjF1jmDLKwQJOmxAEhaghCoI3vE0kYW4eAOJ/exec';
+  // Cria automaticamente uma entrada na Triagem do Kunk (nome, telefone, e-mail e motivo). Vazio = não envia.
+  var URL_KUNK_PRE_CADASTRO = 'https://kunk-api.onrender.com/api/v1/reception/site-pre-cadastro';
   var WHATSAPP_ACOLHIMENTO = '5551920012851';
 
   function iniciarPreCadastro() {
@@ -166,15 +168,17 @@ document.addEventListener('DOMContentLoaded', function () {
       botao.disabled = true;
       botao.textContent = 'Enviando...';
 
-      // Grava na planilha ANTES de abrir o WhatsApp (espera até 3 s; se demorar, segue mesmo assim)
-      var gravacao = Promise.resolve();
-      if (URL_PRE_CADASTRO && window.fetch) {
-        gravacao = fetch(URL_PRE_CADASTRO, {
+      // Grava na planilha e no Kunk ANTES de abrir o WhatsApp (espera até 3 s; se demorar, segue mesmo assim)
+      var dados = JSON.stringify({ nome: nome, telefone: telefone, email: email, motivo: motivo, pagina: location.href });
+      function enviar(url) {
+        if (!url || !window.fetch) return Promise.resolve();
+        return fetch(url, {
           method: 'POST', mode: 'no-cors', keepalive: true,
           headers: { 'Content-Type': 'text/plain;charset=utf-8' },
-          body: JSON.stringify({ nome: nome, telefone: telefone, email: email, motivo: motivo, pagina: location.href })
+          body: dados
         }).catch(function () {});
       }
+      var gravacao = Promise.all([enviar(URL_PRE_CADASTRO), enviar(URL_KUNK_PRE_CADASTRO)]);
       var limite = new Promise(function (ok) { setTimeout(ok, 3000); });
 
       evento('Lead', { content_name: 'Pré-cadastro no site' });
